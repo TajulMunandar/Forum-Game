@@ -1,0 +1,51 @@
+
+span{
+    color: #3c91d6;
+}
+
+.nav-link{
+ color: black;
+}
+
+.image{
+    height: 270px;
+    background-image: url('/img/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card{
+    height: auto;
+    border:none;
+    background-color: #f4f4f5;
+    box-shadow: 5px 5px 7px #0000002c;
+}
+
+.card:hover{
+    box-shadow: 5px 5px 7px #3c91d65d;
+}
+
+.card-body{
+    padding-left:30px ;
+    padding-right: 40px;
+    margin-top: 10px;
+}
+
+.caption{
+    padding: 60px;
+    padding-left: 110px;
+}
+
+.pelajaran{
+    justify-content: space-between;
+
+}
+
+.btn-pelajari{
+    background-color: #3c90d6;
+    color: white;
+}
+
+#current_date{
+    font-size: 20px;
+}
