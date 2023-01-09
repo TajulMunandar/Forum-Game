@@ -35,6 +35,11 @@
                 <div data-i18n="user">Kategori</div>
               </a>
             </li>
+            <li class="menu-item {{ Request::is('dashboard/game/list-rating*') ? 'active' : '' }}">
+              <a href="/dashboard/game/list-rating" class="menu-link">
+                <div data-i18n="user">Rating</div>
+              </a>
+            </li>
           </ul>
         </li>
 

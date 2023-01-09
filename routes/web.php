@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GameController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RatingController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,11 @@ Route::get('/', function () {
 
 Route::prefix('/dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
-    Route::get('/game/list-game', [GameController::class, 'index']);
+
+    Route::resource('/game/list-game', GameController::class);
+
+    Route::get('/game/list-rating', [RatingController::class, 'index']);
     Route::get('/game/list-kategori', [KategoriController::class, 'index']);
-    Route::get('/user', [UserController::class, 'index']);
+
+    Route::resource('/user', UserController::class);
 });

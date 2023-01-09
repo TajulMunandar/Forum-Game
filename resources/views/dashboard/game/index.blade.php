@@ -20,6 +20,7 @@
                                 <th>Kategori</th>
                                 <th>Harga</th>
                                 <th>Keterangan</th>
+                                <th>User</th>
                                 <th>Gambar</th>
                                 <th>Action</th>
                             </tr>
@@ -27,6 +28,7 @@
                         <tbody>
                             <tr>
                                 <td>1</td>
+                                <td>w</td>
                                 <td>w</td>
                                 <td>w</td>
                                 <td>w</td>

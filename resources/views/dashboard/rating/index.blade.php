@@ -15,14 +15,16 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Nama Kategori</th>
-                                <th>Kode Kategori</th>
+                                <th>Nama Game</th>
+                                <th>Nama User</th>
+                                <th>Rating</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1</td>
+                                <td>w</td>
                                 <td>w</td>
                                 <td>w</td>
                                 <td>

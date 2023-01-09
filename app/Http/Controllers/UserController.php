@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -13,9 +15,10 @@ class UserController extends Controller
      */
     public function index()
     {
+        $users = User::all();
         return view('dashboard.user.index', [
             'title' => 'USER'
-        ]);
+        ])->with(compact('users'));
     }
 
     /**
@@ -36,7 +39,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'username' => 'required|max:13',
+            'password' => 'required|min:5|max:255',
+            'role' => 'required'
+        ]);
+
+        $validatedData['password'] = Hash::make($validatedData['password']);
+        $validatedData['role'] = intval($validatedData['role']);
+
+        User::create($validatedData);
+
+        return redirect('/dashboard/user')->with('success', 'User baru berhasil dibuat!');
     }
 
     /**
@@ -68,9 +83,22 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,User $user)
     {
-        //
+        $rules = [
+            'name' => 'required|max:255',
+            'role' => 'required'
+        ];
+
+        if ($request->username != $user->username) {
+            $rules['username'] = ['required', 'max:255', 'unique:users'];
+        };
+
+        $validatedData = $request->validate($rules);
+
+        User::where('id', $user->id)->update($validatedData);
+
+        return redirect('/dashboard/user')->with('success', 'User berhasil diperbarui!');
     }
 
     /**
@@ -79,8 +107,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        User::destroy($user->id);
+        return redirect('/dashboard/user')->with('success', "User $user->username berhasil dihapus!");
     }
 }

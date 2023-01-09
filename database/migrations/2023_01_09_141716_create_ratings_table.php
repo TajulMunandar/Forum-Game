@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->tinyInteger('role');
-            $table->rememberToken();
+            $table->foreignId('id_user')->constrained('users')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreignId('id_game')->constrained('games')->onUpdate('cascade')->onDelete('restrict');
+            $table->tinyInteger('nilai');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('rating');
     }
 };
