@@ -21,7 +21,7 @@
         <li class="menu-item {{ Request::is('dashboard/game*') ? 'active open' : '' }}">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="fa-duotone fa-gamepad me-3"></i>
-            <div data-i18n="Layouts">Game</div>
+            <div data-i18n="Layouts">Games</div>
           </a>
 
           <ul class="menu-sub">

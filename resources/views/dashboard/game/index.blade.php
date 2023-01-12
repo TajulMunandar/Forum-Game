@@ -83,7 +83,7 @@
     </div>
     {{-- End hapus modal --}}
 
-    {{-- Edit Modal --}}
+    {{-- Tambah Modal --}}
     <div class="modal fade" id="modalTambah" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -100,10 +100,12 @@
                             <input type="name" class="form-control" id="floatingInput" placeholder="Valorant">
                             <label for="floatingInput">Nama Game</label>
                         </div>
-                        <div class="form-floating mb-3">
-                            <input type="name" class="form-control" id="floatingInput" placeholder="Action">
-                            <label for="floatingInput">Kategori</label>
-                        </div>
+                        <select class="form-select mb-3" name="role" id="role">
+                            <option selected disabled>Kategori</option>
+                            @foreach ($kategoris as $kategori )
+                            <option value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>
+                            @endforeach
+                        </select>
                         <div class="form-floating mb-3">
                             <input type="number" class="form-control" id="floatingInput" placeholder="Rp. 80.000">
                             <label for="floatingInput">Harga</label>
@@ -112,6 +114,12 @@
                             <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                             <label for="floatingInput">Keterangan</label>
                         </div>
+                        <select class="form-select mb-3" name="role" id="role">
+                            <option selected disabled>User</option>
+                            @foreach ($users as $user)
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endforeach
+                        </select>
                         <div class="mb-3">
                             <div class="input-group mb-3">
                                 <input type="file" class="form-control" id="inputGroupFile02">
@@ -128,7 +136,7 @@
             </div>
         </div>
     </div>
-    {{-- End Edit modal --}}
+    {{-- End Tambah modal --}}
 
 
     <script>

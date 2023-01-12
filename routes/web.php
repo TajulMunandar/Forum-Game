@@ -28,7 +28,8 @@ Route::prefix('/dashboard')->group(function () {
     Route::resource('/game/list-game', GameController::class);
 
     Route::get('/game/list-rating', [RatingController::class, 'index']);
-    Route::get('/game/list-kategori', [KategoriController::class, 'index']);
+
+    Route::resource('/game/list-kategori', KategoriController::class);
 
     Route::resource('/user', UserController::class);
 });

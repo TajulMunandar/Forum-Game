@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class KategoriController extends Controller
@@ -13,9 +14,10 @@ class KategoriController extends Controller
      */
     public function index()
     {
+        $kategoris = Kategori::all();
         return view('dashboard.kategori.index', [
             'title' => 'KATEGORI'
-        ]);
+        ])->with(compact('kategoris'));
     }
 
     /**
@@ -36,7 +38,13 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'kategori' => 'required|max:255',
+            'kode_kategori' => 'required|max:255',
+        ]);
+
+        Kategori::create($validatedData);
+        return redirect('/dashboard/game/list-kategori')->with('success', 'Kategori baru berhasil dibuat!');
     }
 
     /**
@@ -68,9 +76,18 @@ class KategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $rules = [
+            'kategori' => 'required|max:255',
+            'kode_kategori' => 'required|max:255'
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        Kategori::where('id', $request->id)->update($validatedData);
+
+        return redirect('/dashboard/game/list-kategori')->with('success', "Kategori $request->kategori berhasil diperbarui!");
     }
 
     /**
@@ -81,6 +98,10 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $id = Kategori::find($id);
+        $id->delete();
+
+        // Kategori::destroy($kategori->id);
+        return redirect('/dashboard/game/list-kategori')->with('success', "Kategori $id->kategori berhasil dihapus!");
     }
 }

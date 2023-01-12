@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -13,9 +15,11 @@ class GameController extends Controller
      */
     public function index()
     {
+        $kategoris = Kategori::all();
+        $users = User::all();
         return view('dashboard.game.index', [
             'title' => 'GAMES'
-        ]);
+        ])->with(compact('kategoris', 'users'));
     }
 
     /**
